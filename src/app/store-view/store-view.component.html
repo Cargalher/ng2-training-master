@@ -1,0 +1,23 @@
+<!-- Insert jumbotron component here -->
+<app-jumbotron
+title="Welcome to our store"
+description="Browse our collection of license plates"
+></app-jumbotron>
+<div class="container">
+<div class="row">
+  <!-- License plates go here -->
+  <app-license-plate
+    *ngFor="let myPlate of licensePlates$ | async; even as isEven"
+    [plate]="myPlate"
+    buttonText="Add to cart"
+    appHighlight
+    class="col-md-4"
+    (buttonClick)="addToCart($event)"
+  ></app-license-plate>
+  <!-- we can use the above syntax to know if the index of an element in the array is even -->
+  <!-- This tells Angular to apply the grey background when isEven is true and to use an empty background otherwise. -->
+</div>
+</div>
+<app-popup-window title="Plate added to Cart" [isOpen]="showPopup">
+Thanks for shopping with us
+</app-popup-window>
